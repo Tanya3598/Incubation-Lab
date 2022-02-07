@@ -3,6 +3,7 @@ public class ObjectViewerController_Test {
 	@isTest
     public static void test_ListOfAllObjects() {
         ObjectViewerController.listOfAllObjects();
+        //Add system.asserts
     }
     
     @isTest
