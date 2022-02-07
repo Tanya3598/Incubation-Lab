@@ -1,0 +1,64 @@
+<template>
+    <lightning-card>
+        <lightning-layout>
+            <lightning-layout-item size="6">
+                <lightning-combobox
+                    class="slds-m-horizontal_large"
+                    name="progress"
+                    label="Select Object"
+                    value={value}
+                    placeholder="Select Progress"
+                    options={options}
+                    onchange={handleChange}
+                    required >
+                </lightning-combobox>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+
+    <lightning-card>
+        <template if:true={showTable}>
+            <lightning-card title="Apply filters on data">
+                <lightning-layout>
+                    <lightning-layout-item size="4">
+                        <lightning-input type="text"
+                            value={searchNameValue}
+                            label="Search on Field Name"
+                            class="slds-m-horizontal_large"
+                            onchange={handleFieldNameSearch}
+                        ></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4">
+                        <lightning-input type="text"
+                            value={searchDatatypeValue}
+                            label="Search on Datatype"
+                            class="slds-m-horizontal_large"
+                            onchange={handleDatatypeSearch}
+                        ></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4">
+                        <lightning-button icon-name="utility:download" 
+                                          disabled={disableButton}
+                                          label="Export Data as CSV" 
+                                          title="Download as CSV"
+                                          class="slds-align_absolute-center"
+                                          onclick={downloadCSVFile} variant="brand-outline"></lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <hr>
+            </lightning-card>
+            <lightning-datatable
+                        key-field="id"
+                        data={data}
+                        columns={columns}
+                        >
+            </lightning-datatable>
+        </template>
+        <template if:false={showTable}>
+            <h1 class="slds-align_absolute-center slds-m-around_x-large">Data will be available once you select the object.</h1>
+            <lightning-spinner alternative-text="Loading Screen..." ></lightning-spinner>
+        </template>
+    </lightning-card>
+
+    
+</template>
